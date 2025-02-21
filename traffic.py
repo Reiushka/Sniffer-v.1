@@ -33,6 +33,20 @@ def save_packet(packet, folder, encryption):
     # Виведення повідомлення в консоль
     print(f"Saved packet to {filename} - {folder} / {encryption}")
 
+# Додана функція для перегляду збережених пакетів з сортуванням за іменем файлу
+def list_saved_packets():
+    packet_files = []
+    for root, dirs, files in os.walk("traffic"):
+        for file in files:
+            if file.endswith(".pcap"):
+                packet_files.append(os.path.join(root, file))
+    
+    # Сортування файлів
+    packet_files.sort()
+    
+    for file in packet_files:
+        print(file)
+
 # Визначення мережевого інтерфейсу для перехоплення
 default_iface = "enp2s0"  # Вказано інтерфейс enp2s0
 
